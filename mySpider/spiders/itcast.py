@@ -1,11 +1,13 @@
 import scrapy
 
 
-class ItcastSpider(scrapy.Spider):
+class Opp2Spider(scrapy.Spider):
     name = "itcast"
-    allowed_domains = ["itcast.cn"]
-    start_urls = ["http://www.itcast.cn/channel/teacher.shtml"]
+    allowed_domains = ['itcast.cn']
+    start_urls = ['http://www.itcast.cn/']
 
     def parse(self, response):
-        filename = "teacher.html"
-        open(filename, "w").write(response.body)
+        context = response.xpath('/html/head/title/text()')
+        title = context.extract_first()
+        print(title)
+        pass
